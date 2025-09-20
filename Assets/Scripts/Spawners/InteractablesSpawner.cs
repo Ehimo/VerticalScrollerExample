@@ -30,18 +30,50 @@ public class InteractablesSpawner : MonoBehaviour, IService
     {
         _eventBus = ServiceLocator.Current.Get<EventBus>();
         _eventBus.Subscribe<SpawnInteractableSignal>(Spawn);
+        _eventBus.Subscribe<SpawnInteractableInSpecialPosition>(SpawnInSpecialPosition);
         _eventBus.Subscribe<DisposeInteractableSignal>(Dispose);
     }
 
     private void Spawn(SpawnInteractableSignal signal)
+    {
+        var item = SpawnBasics(signal);
+        item.transform.position = RandomizeSpawnPosition();
+
+        ActiveInteractable(item);
+    }
+
+    private void SpawnInSpecialPosition(SpawnInteractableInSpecialPosition signal)
+    {
+        var item = SpawnBasics(signal);
+        item.transform.position = signal.SpawnPosition.position;
+
+        ActiveInteractable(item);
+    }
+
+    private Interactable SpawnBasics(SpawnInteractableSignal signal)
     {
         var interactable = _config.Get(signal.InteractableType, signal.Grade);
         var pool = GetPool(interactable);
 
         var item = pool.Get();
         item.transform.parent = _parent;
-        item.transform.position = RandomizeSpawnPosition();
 
+        return item;
+    }
+
+    private Interactable SpawnBasics(SpawnInteractableInSpecialPosition signal)
+    {
+        var interactable = _config.Get(signal.InteractableType, signal.Grade);
+        var pool = GetPool(interactable);
+
+        var item = pool.Get();
+        item.transform.parent = _parent;
+
+        return item;
+    }
+
+    private void ActiveInteractable(Interactable item)
+    {
         _eventBus.Invoke(new InteractableActivatedSignal(item));
     }
 
@@ -83,6 +115,7 @@ public class InteractablesSpawner : MonoBehaviour, IService
     private void OnDestroy()
     {
         _eventBus.Unsubscribe<SpawnInteractableSignal>(Spawn);
+        _eventBus.Unsubscribe<SpawnInteractableInSpecialPosition>(SpawnInSpecialPosition);
         _eventBus.Unsubscribe<DisposeInteractableSignal>(Dispose);
     }
 }

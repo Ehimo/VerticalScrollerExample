@@ -23,12 +23,17 @@ namespace Interactables
         {
             if (col.gameObject.tag.Equals("Player"))
             {
-                Interact();
-                Dispose();
+                OnCollideWithPlayer();
             }
         }
 
-        private void Dispose()
+        protected void OnCollideWithPlayer()
+        {
+            Interact();
+            Dispose();
+        }
+
+        protected void Dispose()
         {
             _eventBus.Invoke(new DisposeInteractableSignal(this));
         }

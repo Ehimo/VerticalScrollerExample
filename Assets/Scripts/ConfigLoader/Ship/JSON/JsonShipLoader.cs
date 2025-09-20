@@ -68,7 +68,7 @@ namespace ConfigLoader.Ship.JSON
             {
                 var spriteName = "ShipSprites/" + remoteShip.ShipSprite;
                 var sprite = Resources.Load<Sprite>(spriteName);
-                _shipData.Add(new ShipData(remoteShip.ID, remoteShip.MovementSpeed, remoteShip.PurchasePrice, sprite));
+                _shipData.Add(new ShipData(remoteShip.MaxHealth, remoteShip.ID, remoteShip.MovementSpeed, remoteShip.PurchasePrice, sprite, remoteShip.ShootSpeed));
             }
         }
 

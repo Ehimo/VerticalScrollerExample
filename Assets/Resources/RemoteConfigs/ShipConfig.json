@@ -1,20 +1,26 @@
 [
   {
+    "maxHealth": 3,
     "id": 0,
     "movementSpeed": 3,
     "purchasePrice": 0,
-    "shipSprite": "plane_2"
+    "shipSprite": "plane_2",
+    "shootSpeed": 1.2
   },
   {
+    "maxHealth": 3,
     "id": 1,
     "movementSpeed": 5,
     "purchasePrice": 6,
-    "shipSprite": "plane_3"
+    "shipSprite": "plane_3",
+    "shootSpeed": 0.9
   },
   {
+    "maxHealth": 3,
     "id": 2,
     "movementSpeed": 7,
     "purchasePrice": 9,
-    "shipSprite": "plane_4"
+    "shipSprite": "plane_4",
+    "shootSpeed": 0.6
   }
 ]

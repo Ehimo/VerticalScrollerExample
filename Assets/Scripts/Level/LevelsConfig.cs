@@ -7,4 +7,8 @@ public class LevelsConfig : ScriptableObject
     [SerializeField] private List<LevelData> _levels;
 
     public List<LevelData> Levels => _levels;
+
+    //[SerializeField] private int _maxHealth = 3;
+    
+    //public int MaxHealth => _maxHealth;
 }

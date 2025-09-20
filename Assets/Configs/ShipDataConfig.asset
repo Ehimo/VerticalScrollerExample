@@ -13,15 +13,21 @@ MonoBehaviour:
   m_Name: ShipDataConfig
   m_EditorClassIdentifier: 
   _shipsData:
-  - _id: 0
+  - _maxHealth: 3
+    _id: 0
     _movementSpeed: 2
     _purchasePrice: 0
     _shipSprite: {fileID: 21300000, guid: 83b2201b899c65641864465974c4c928, type: 3}
-  - _id: 2
-    _movementSpeed: 6
-    _purchasePrice: 10
-    _shipSprite: {fileID: 21300000, guid: 49db1a20a50f10b448f49b912b4a453a, type: 3}
-  - _id: 1
+    _shootSpeed: 1.2
+  - _maxHealth: 3
+    _id: 1
     _movementSpeed: 4
     _purchasePrice: 5
     _shipSprite: {fileID: 21300000, guid: 1897997d56c938d4e967e0268f9688db, type: 3}
+    _shootSpeed: 0.9
+  - _maxHealth: 3
+    _id: 2
+    _movementSpeed: 6
+    _purchasePrice: 10
+    _shipSprite: {fileID: 21300000, guid: 49db1a20a50f10b448f49b912b4a453a, type: 3}
+    _shootSpeed: 0.6

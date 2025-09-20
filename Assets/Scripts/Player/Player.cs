@@ -10,14 +10,19 @@ using UnityEngine;
 /// </summary>
 public class Player : MonoBehaviour, IService
 {
-    [SerializeField] private int _health = 3;
     [SerializeField] private float _speedKoef = 3f;
     [SerializeField] private SpriteRenderer _spriteRenderer;
     [SerializeField] private GameObject _shieldObject;
 
+    private int _health;
+    private float _reloadTime = 1.25f;
+    private int _maxHealth;
+    
     public int Health => _health;
     public float SpeedKoef => _speedKoef;
+    public float ReloadTime => _reloadTime;
 
+    
     private bool _isShielded = false;
 
     private EventBus _eventBus;
@@ -39,12 +44,13 @@ public class Player : MonoBehaviour, IService
         var shipData = shipDataLoader.GetCurrentShipData();
         _spriteRenderer.sprite = shipData.ShipSprite;
         _speedKoef = shipData.MovementSpeed;
+        _reloadTime = shipData.ShootSpeed;
+        _maxHealth = shipData.MaxHealth;
     }
 
     private void GameStarted(GameStartedSignal signal)
     {
-        //TODO - хелс должен лежать в конфиге уровня
-        _health = 3;
+        _health = _maxHealth;
         _eventBus.Invoke(new HealthChangedSignal(_health));
     }
 
@@ -74,10 +80,10 @@ public class Player : MonoBehaviour, IService
         _health += signal.Value;
 
         //TODO - в настройки
-        if (_health > 3)
+        if (_health > _maxHealth)
         {
-            _eventBus.Invoke(new AddScoreSignal(50 * (_health - 3)));
-            _health = 3;
+            _eventBus.Invoke(new AddScoreSignal(50 * (_health - _maxHealth)));
+            _health = _maxHealth;
         }
 
         _eventBus.Invoke(new HealthChangedSignal(_health));
