@@ -36,6 +36,7 @@ public class Player : MonoBehaviour, IService
         _eventBus.Subscribe<GameStartedSignal>(GameStarted);
         _eventBus.Subscribe<GameStopSignal>(GameStop);
         _eventBus.Subscribe<AllDataLoadedSignal>(OnDataLoaded);
+        _eventBus.Subscribe<PlayerSlowSignal>(OnSlow);
     }
 
     private void OnDataLoaded(AllDataLoadedSignal signal)
@@ -73,6 +74,25 @@ public class Player : MonoBehaviour, IService
         {
             _eventBus.Invoke(new PlayerDeadSignal());
         }
+    }
+
+    private void OnSlow(PlayerSlowSignal signal)
+    {
+        StartCoroutine(ActiveSlowEffect(signal.SlowEffectTime, signal.SlowMultiplier));
+    }
+
+    private IEnumerator ActiveSlowEffect(int slowEffectTime, float slowMultiplier)
+    {
+        var speedBeforeSlow = _speedKoef;
+
+        _speedKoef /= slowMultiplier;
+
+        for(float i = 0; i < slowEffectTime; i += Time.deltaTime)
+        {
+            yield return null;
+        }
+
+        _speedKoef = speedBeforeSlow;
     }
 
     private void OnAddHealth(AddHealthSignal signal)

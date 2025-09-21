@@ -25,3 +25,6 @@ MonoBehaviour:
   - _interactableType: 4
     _interactableGrade: 0
     _prefab: {fileID: 8227008730292571054, guid: 577a3c24e4b9b0447ab9b10bbea40094, type: 3}
+  - _interactableType: 6
+    _interactableGrade: 0
+    _prefab: {fileID: 4353925491015623314, guid: 736f332a650cb2f42bc101a597095fa5, type: 3}

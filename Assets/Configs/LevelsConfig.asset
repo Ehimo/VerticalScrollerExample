@@ -45,6 +45,11 @@ MonoBehaviour:
       startCooldown: 2.2
       endCooldown: 1.2
       prewarmTime: 0
+    - interactableType: 6
+      interactableGrade: 0
+      startCooldown: 2
+      endCooldown: 1
+      prewarmTime: 0
   - id: 2
     levelLength: 40
     startSpeed: 1.4
@@ -66,6 +71,11 @@ MonoBehaviour:
       startCooldown: 10
       endCooldown: 10
       prewarmTime: 10
+    - interactableType: 6
+      interactableGrade: 0
+      startCooldown: 1
+      endCooldown: 0.75
+      prewarmTime: 0
   - id: 3
     levelLength: 50
     startSpeed: 1.6
@@ -92,6 +102,11 @@ MonoBehaviour:
       startCooldown: 0.9
       endCooldown: 0.65
       prewarmTime: 0
+    - interactableType: 6
+      interactableGrade: 0
+      startCooldown: 0.9
+      endCooldown: 0.65
+      prewarmTime: 0
   - id: 4
     levelLength: 60
     startSpeed: 1.8
@@ -114,6 +129,11 @@ MonoBehaviour:
       endCooldown: 0.5
       prewarmTime: 3
     - interactableType: 1
+      interactableGrade: 0
+      startCooldown: 0.75
+      endCooldown: 0.55
+      prewarmTime: 3
+    - interactableType: 6
       interactableGrade: 0
       startCooldown: 0.75
       endCooldown: 0.55

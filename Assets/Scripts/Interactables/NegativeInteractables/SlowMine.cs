@@ -1,10 +1,13 @@
-﻿namespace Interactables
+﻿using CustomEventBus.Signals;
+
+namespace Interactables
 {
-    public class SlowMine : Interactable
+    public class SlowMine : DamageMine
     {
         protected override void Interact()
         {
-            //TODO - Slow Player
+            base.Interact();
+            _eventBus.Invoke(new PlayerSlowSignal(1.5f, 10));
         }
     }
 }

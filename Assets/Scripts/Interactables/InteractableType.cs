@@ -8,5 +8,6 @@
         HEALTH_KIT = 3,
         SHIELD = 4,
         BULLET = 5,
+        SLOW_MINE = 6,
     }
 }
