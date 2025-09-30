@@ -18,8 +18,8 @@ namespace UI.Dialogs
         [SerializeField] private GameObject _selectedCheck;
         [SerializeField] private GameObject _notPurchasedLock;
         
-        private int _price;
         private bool _isPurchased;
+        private int _price;
         private int _shipId;
 
         private EventBus _eventBus;
@@ -43,6 +43,7 @@ namespace UI.Dialogs
             var selectedShipId = PlayerPrefs.GetInt(StringConstants.SELECTED_SHIP, 0);
             _selectedCheck.SetActive(selectedShipId == _shipId);
             _notPurchasedLock.SetActive(!isPurchased);
+            _slotPrice.gameObject.SetActive(!isPurchased);
         }
 
         private void OnShipSelected(SelectShipSignal signal)
@@ -71,6 +72,8 @@ namespace UI.Dialogs
                         
                         _eventBus.Invoke(new SelectShipSignal(_shipId));
                         PlayerPrefs.SetInt(StringConstants.SELECTED_SHIP, _shipId);
+
+                        _slotPrice.gameObject.SetActive(!_isPurchased);
                     });
                 }
                 else
